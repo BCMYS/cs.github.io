@@ -2,28 +2,20 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>关于 | 一笑置之的博客</title>
+<title>下车代码 | 一笑置之的博客</title>
 <link rel="shortcut icon" href="https://BCMYS.github.io/favicon.ico?v=1598182392919">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://BCMYS.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="关于 | 一笑置之的博客 - Atom Feed" href="https://BCMYS.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="下车代码 | 一笑置之的博客 - Atom Feed" href="https://BCMYS.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
     <meta name="description" content="
-欢迎来到我的小站呀，很高兴遇见你！🤝
 
-🏠 关于本站
-这是一笑置之来分享代码的博客网站
-👨‍💻 博主是谁
-一笑置之
-⛹ 兴趣爱好
-编程
-📬 联系我呀
-QQ:3274132634
-哔哩哔哩：YS_一笑置之呵呵
-西瓜视频：YS一笑置..." />
+
+world.querySelectorAll('.还原').forEach((e)=&gt;{//以带标签还原的模型为触发条遍历循环
+e.onEntityContact(({entity,other})=&gt;{//设置目标模型的碰..." />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -87,53 +79,66 @@ QQ:3274132634
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              关于
+              下车代码
             </h2>
             <div class="post-info">
               <span>
-                2019-01-25
+                2020-08-23
               </span>
               <span>
-                1 min read
+                2 min read
               </span>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<p>这是一笑置之来分享代码的博客网站</p>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<p>一笑置之</p>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<p>编程</p>
-<h2 id="联系我呀">📬 联系我呀</h2>
-<p>QQ:3274132634<br>
-哔哩哔哩：YS_一笑置之呵呵<br>
-西瓜视频：YS一笑置之<br>
-微博：YS_一笑置之</p>
+                <ol>
+<li></li>
+</ol>
+<p>world.querySelectorAll('.还原').forEach((e)=&gt;{//以带标签还原的模型为触发条遍历循环<br>
+e.onEntityContact(({entity,other})=&gt;{//设置目标模型的碰撞事件.<br>
+if(!other.isPlayer){return} //防止非玩家实体参与检测.<br>
+other.mesh=other;  //还原原造型<br>
+other.player.invisible=false;//取消隐身<br>
+other.player.canFly = false;//取消飞行<br>
+other.player.scale = 1;//还原原形状，大小<br>
+other.player.runSpeed=0.5;//还原原速度<br>
+world.say(other.player.name+&quot;还原了自己&quot;);//广播信息<br>
+})<br>
+})</p>
+<ol start="2">
+<li></li>
+</ol>
+<p>world.onChat(({ entity, message }) =&gt; {//如果有人在聊天板说话，检测<br>
+if (entity &amp;&amp; entity.isPlayer) {//如果说话者为玩家<br>
+if (message === '我要下车') {//且内容为“我要下车”，触发……<br>
+other.mesh=other;  //还是还原原造型<br>
+other.player.invisible=false;//还是取消隐身<br>
+other.player.canFly = false;//还是取消飞行<br>
+other.player.scale = 1;//还原原形状，大小（不想多说了）<br>
+other.player.runSpeed=0.5;//还原原速度<br>
+world.say(other.player.name+&quot;还原了自己&quot;);//广播信息<br>
+}<br>
+})</p>
 
               </div>
               <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%8D%9A%E4%B8%BB%E6%98%AF%E8%B0%81">👨‍💻 博主是谁</a></li>
-<li><a href="#%E5%85%B4%E8%B6%A3%E7%88%B1%E5%A5%BD">⛹ 兴趣爱好</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
-</ul>
-</li>
-</ul>
-
+                
               </div>
             </div>
           </article>
         </div>
 
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://BCMYS.github.io/post/sui-ji-chu-sheng-dian/">
+              <h3 class="post-title">
+                随机出生点
+              </h3>
+            </a>
+          </div>
         
 
         
