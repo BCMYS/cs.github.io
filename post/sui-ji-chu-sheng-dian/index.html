@@ -2,21 +2,19 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>简单的自动保存玩家数据使实现多设备漫游的代码 | 一笑置之的博客</title>
+<title>随机出生点 | 一笑置之的博客</title>
 <link rel="shortcut icon" href="https://BCMYS.github.io/favicon.ico?v=1598182093046">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://BCMYS.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="简单的自动保存玩家数据使实现多设备漫游的代码 | 一笑置之的博客 - Atom Feed" href="https://BCMYS.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="随机出生点 | 一笑置之的博客 - Atom Feed" href="https://BCMYS.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="var save_value = {};
-function save(player,value){
-save_value[player] = value;
-}
-world.onPlayerJoin(({ entity }) =&gt; {
-..." />
+    <meta name="description" content="// 遍历地图, 寻找合适出生点
+for (let x = XZ_BEGIN; x &lt; XZ_END; x++) {
+    for (let z = XZ_BEGIN; z &lt; XZ_END; z++) {
+        l..." />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -80,7 +78,7 @@ world.onPlayerJoin(({ entity }) =&gt; {
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              简单的自动保存玩家数据使实现多设备漫游的代码
+              随机出生点
             </h2>
             <div class="post-info">
               <span>
@@ -94,30 +92,17 @@ world.onPlayerJoin(({ entity }) =&gt; {
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>var save_value = {};<br>
-function save(player,value){<br>
-save_value[player] = value;<br>
-}</p>
-<p>world.onPlayerJoin(({ entity }) =&gt; {<br>
-if(entity.isPlayer &amp;&amp; entity.player.name in save_value){<br>
-entity.player.currency = save_value[entity.player.name];<br>
-entity.player.directMessage(<code>检测到你有存档，存档金币数量为${entity.player.currency}，你为你自动恢复存档</code>)<br>
-}<br>
-else{<br>
-entity.player.currency = 0;<br>
-entity.player.directMessage('你没有存档！')<br>
-}<br>
-});</p>
-<p>world.querySelectorAll('.金币').forEach((e)=&gt;{<br>
-e.onEntityContact(({entity,other})=&gt;{<br>
-if(!other.isPlayer){return}<br>
-other.player.currency+=1;<br>
-save(other.player.name,other.player.currency);<br>
-world.say(<code>你的金币数量为${other.player.currency}</code>)<br>
-})<br>
-})</p>
-<p>当然我只是做个测试，所以用了个模型，当碰撞模型时加金币，大家可以根据需求更改<br>
-注意因为每天晚上服务器会关，然后数据就升天了</p>
+                <pre><code>// 遍历地图, 寻找合适出生点
+for (let x = XZ_BEGIN; x &lt; XZ_END; x++) {
+    for (let z = XZ_BEGIN; z &lt; XZ_END; z++) {
+        let i = 0;
+        while (i &lt; PLAYER_HEIGHT &amp;&amp; voxels.getVoxel(x, i + GROUND_Y, z) === 0) i++;
+        // 如果(x, GROUND_Y, z)有足够空间容纳玩家, 则将其纳入出生点
+        if (i === PLAYER_HEIGHT) {
+            spawnPoints.push([x, GROUND_Y + 2, z])
+        }
+    }
+}</code></pre>
 
               </div>
               <div class="toc-container">
@@ -127,6 +112,15 @@ world.say(<code>你的金币数量为${other.player.currency}</code>)<br>
           </article>
         </div>
 
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://BCMYS.github.io/post/jian-dan-de-zi-dong-bao-cun-wan-jia-shu-ju-shi-shi-xian-duo-she-bei-man-you-de-dai-ma/">
+              <h3 class="post-title">
+                简单的自动保存玩家数据使实现多设备漫游的代码
+              </h3>
+            </a>
+          </div>
         
 
         
