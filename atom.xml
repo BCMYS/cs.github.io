@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://BCMYS.github.io</id>
+    <title>Gridea</title>
+    <updated>2020-08-23T11:13:39.937Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://BCMYS.github.io"/>
+    <link rel="self" href="https://BCMYS.github.io/atom.xml"/>
+    <subtitle>The world&apos;s full of lonely people afraid to make the first move.
+世界上有太多孤独的人害怕先踏出第一步。</subtitle>
+    <logo>https://BCMYS.github.io/images/avatar.png</logo>
+    <icon>https://BCMYS.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2020, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[简单的自动保存玩家数据使实现多设备漫游的代码]]></title>
+        <id>https://BCMYS.github.io/post/jian-dan-de-zi-dong-bao-cun-wan-jia-shu-ju-shi-shi-xian-duo-she-bei-man-you-de-dai-ma/</id>
+        <link href="https://BCMYS.github.io/post/jian-dan-de-zi-dong-bao-cun-wan-jia-shu-ju-shi-shi-xian-duo-she-bei-man-you-de-dai-ma/">
+        </link>
+        <updated>2020-08-23T11:04:12.000Z</updated>
+        <content type="html"><![CDATA[<p>var save_value = {};<br>
+function save(player,value){<br>
+save_value[player] = value;<br>
+}</p>
+<p>world.onPlayerJoin(({ entity }) =&gt; {<br>
+if(entity.isPlayer &amp;&amp; entity.player.name in save_value){<br>
+entity.player.currency = save_value[entity.player.name];<br>
+entity.player.directMessage(<code>检测到你有存档，存档金币数量为${entity.player.currency}，你为你自动恢复存档</code>)<br>
+}<br>
+else{<br>
+entity.player.currency = 0;<br>
+entity.player.directMessage('你没有存档！')<br>
+}<br>
+});</p>
+<p>world.querySelectorAll('.金币').forEach((e)=&gt;{<br>
+e.onEntityContact(({entity,other})=&gt;{<br>
+if(!other.isPlayer){return}<br>
+other.player.currency+=1;<br>
+save(other.player.name,other.player.currency);<br>
+world.say(<code>你的金币数量为${other.player.currency}</code>)<br>
+})<br>
+})</p>
+<p>当然我只是做个测试，所以用了个模型，当碰撞模型时加金币，大家可以根据需求更改<br>
+注意因为每天晚上服务器会关，然后数据就升天了</p>
+]]></content>
+    </entry>
+</feed>

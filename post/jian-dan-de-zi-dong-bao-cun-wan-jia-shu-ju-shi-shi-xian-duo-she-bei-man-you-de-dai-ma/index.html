@@ -1,0 +1,185 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>简单的自动保存玩家数据使实现多设备漫游的代码 | Gridea</title>
+<link rel="shortcut icon" href="https://BCMYS.github.io/favicon.ico?v=1598181216741">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://BCMYS.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="简单的自动保存玩家数据使实现多设备漫游的代码 | Gridea - Atom Feed" href="https://BCMYS.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="var save_value = {};
+function save(player,value){
+save_value[player] = value;
+}
+world.onPlayerJoin(({ entity }) =&gt; {
+..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://BCMYS.github.io">
+  <img class="avatar" src="https://BCMYS.github.io/images/avatar.png?v=1598181216741" alt="">
+  </a>
+  <h1 class="site-title">
+    Gridea
+  </h1>
+  <p class="site-description">
+    The world's full of lonely people afraid to make the first move.
+世界上有太多孤独的人害怕先踏出第一步。
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              简单的自动保存玩家数据使实现多设备漫游的代码
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-08-23
+              </span>
+              <span>
+                1 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>var save_value = {};<br>
+function save(player,value){<br>
+save_value[player] = value;<br>
+}</p>
+<p>world.onPlayerJoin(({ entity }) =&gt; {<br>
+if(entity.isPlayer &amp;&amp; entity.player.name in save_value){<br>
+entity.player.currency = save_value[entity.player.name];<br>
+entity.player.directMessage(<code>检测到你有存档，存档金币数量为${entity.player.currency}，你为你自动恢复存档</code>)<br>
+}<br>
+else{<br>
+entity.player.currency = 0;<br>
+entity.player.directMessage('你没有存档！')<br>
+}<br>
+});</p>
+<p>world.querySelectorAll('.金币').forEach((e)=&gt;{<br>
+e.onEntityContact(({entity,other})=&gt;{<br>
+if(!other.isPlayer){return}<br>
+other.player.currency+=1;<br>
+save(other.player.name,other.player.currency);<br>
+world.say(<code>你的金币数量为${other.player.currency}</code>)<br>
+})<br>
+})</p>
+<p>当然我只是做个测试，所以用了个模型，当碰撞模型时加金币，大家可以根据需求更改<br>
+注意因为每天晚上服务器会关，然后数据就升天了</p>
+
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+
+        
+
+        <div class="site-footer">
+   <a href="https://shequ.codemao.cn/user/2712576"_blank">一笑置之的编程猫个人主页</a>
+  <a class="rss" href="https://BCMYS.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
